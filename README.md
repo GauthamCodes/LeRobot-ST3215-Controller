@@ -61,33 +61,22 @@ PC (USB) → Adapter Board → Servo ID1 → Servo ID2 → Servo ID3 → ...
 - Waveshare STServo Python SDK
 
 ### Installation
-
 **1. Install pyserial:**
 ```bash
 pip install pyserial
 ```
 
-**2. Download the STServo Python SDK from Waveshare:**
-```
-https://www.waveshare.com/wiki/Bus_Servo_Adapter_(A)
-```
-
-**3. Extract and set up the virtual environment:**
+**2. Clone the repository:**
 ```bash
-cd STServo_Python
-stservo-env\Scripts\activate      # Windows
-source stservo-env/bin/activate   # Linux/Mac
+git clone https://github.com/GauthamCodes/ST3215-servo-controller.git
+cd ST3215-servo-controller
 ```
 
-**4. Copy all scripts from this repo into the `sms_sts` folder:**
-```
-STServo_Python/
-  stservo-env/
-    sms_sts/          ← place all scripts here
-    scservo_sdk/      ← SDK library (already there)
-```
-
----
+**3. Run any script directly:**
+```bash
+cd scripts
+python ping.py
+`
 
 ## 📁 Project Structure
 
