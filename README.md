@@ -25,12 +25,7 @@ A Python-based control system for the **Feetech ST3215 Serial Bus Servo** using 
 ⚪ WHITE  →  D  (Data / Signal)
 ```
 
-### Board Switch Position
 
-Make sure the switch on the Waveshare adapter is set to:
-```
-B  USB-SERVO   ✅
-```
 
 ### Daisy Chain Setup
 
