@@ -18,17 +18,13 @@ A Python-based control system for the **Feetech ST3215 Serial Bus Servo** using 
 ## 🔌 Wiring Guide
 
 ### Servo Wire Colors → Adapter Board
-
 ```
 ⚫ BLACK  →  G  (Ground)
 🔴 RED    →  V  (Voltage / Power)
 ⚪ WHITE  →  D  (Data / Signal)
 ```
 
-
-
 ### Daisy Chain Setup
-
 ```
 PC (USB) → Adapter Board → Servo ID1 → Servo ID2 → Servo ID3 → ...
 ```
@@ -54,13 +50,16 @@ PC (USB) → Adapter Board → Servo ID1 → Servo ID2 → Servo ID3 → ...
 ### Daisy Chained Manipulator with ST3215 Servo
 ![Daisy chained manipulator with ST3215 Servo](media/photos/Daisy%20chained%20manipulator%20with%20STM3215%20SERVO.jpg)
 
+---
+
 ## 🛠️ Software Requirements
 
 - Python 3.x
 - pyserial library
-- Waveshare STServo Python SDK
+- Waveshare STServo Python SDK (bundled — no download needed)
 
 ### Installation
+
 **1. Install pyserial:**
 ```bash
 pip install pyserial
@@ -76,10 +75,13 @@ cd ST3215-servo-controller
 ```bash
 cd scripts
 python ping.py
-`
+```
+
+That's it — the `scservo_sdk` library is already bundled inside the repo. No extra downloads or setup needed!
+
+---
 
 ## 📁 Project Structure
-
 ```
 ST3215_servo_controller/
 │
@@ -260,7 +262,6 @@ Main Thread               → Handles keyboard commands
 ## 📐 Position & Angle Reference
 
 The ST3215 uses a **12-bit magnetic encoder**:
-
 ```
 Position range : 0 – 4095
 Angle range    : 0° – 360°
@@ -292,9 +293,6 @@ Examples:
 ---
 
 ## 🔧 Troubleshooting
-
-### `No such file or directory: SCServo.h`
-→ SCServo library not installed correctly. See installation steps above.
 
 ### `Access is denied` on COM port
 → Close Arduino IDE or any other program using the port, then retry.
