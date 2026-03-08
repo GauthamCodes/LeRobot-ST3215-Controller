@@ -1,6 +1,41 @@
-# ST3215 Serial Bus Servo Controller
+# LeRobot ST3215 Servo Controller
 
-A Python-based control system for the **Feetech ST3215 Serial Bus Servo** using the **Waveshare Bus Servo Adapter (A)**. Includes real-time position feedback, teach & replay mode with multithreading, and movement logging.
+A Python-based control system for a **6-DOF LeRobot Manipulator Arm** built using **Feetech ST3215 Serial Bus Servos** and the **Waveshare Bus Servo Adapter (A)**. Includes real-time position feedback, teach & replay mode with multithreading, and movement logging.
+
+---
+
+## 🤖 About the Robot
+
+This project controls a **LeRobot-inspired 6 degree-of-freedom robotic manipulator arm**. The arm is built with:
+- **6x Feetech ST3215** high-torque serial bus servos as all joints
+- **3D printed structural frame** forming the arm links and gripper
+- **Daisy chained serial bus** connecting all 6 servos on a single wire
+- **Waveshare Bus Servo Adapter (A)** bridging USB from PC to the servo bus
+- **No microcontroller required** — controlled directly from PC via Python
+
+---
+
+## 🎥 Demo
+
+[![Demo Video](media/photos/connected_and_controlled_by_python.jpeg)](media/videos/demo%20vid.mp4)
+
+> Click the image above to watch the demo video.
+
+---
+
+## 📸 Photos
+
+### LeRobot Arm — Live Servo Feedback
+![LeRobot arm controlled by Python](media/photos/Leroy_robot_arm.jpeg)
+
+### Daisy Chained Manipulator with ST3215 Servos
+![Daisy chained manipulator](media/photos/Daisy_chained_manipulator_with_STM3215_SERVO.jpeg)
+
+### Connected and Controlled by Python
+![Connected and controlled by Python](media/photos/connected_and_controlled_by_python.jpeg)
+
+### Waveshare Serial Bus Servo Driver Board
+![Waveshare Serial Bus Servo Driver Board](media/photos/Waveshare_Serial_Bus_Servo_Driver_Board.jpeg)
 
 ---
 
@@ -8,7 +43,7 @@ A Python-based control system for the **Feetech ST3215 Serial Bus Servo** using 
 
 | Component | Details |
 |---|---|
-| **Servo** | Feetech ST3215 Series Serial Bus Servo |
+| **Servo** | Feetech ST3215 Series Serial Bus Servo (×6) |
 | **Driver Board** | Waveshare Bus Servo Adapter (A) V1.1 |
 | **Power Supply** | 9V–12.6V DC (12V recommended for full 30kg.cm torque) |
 | **Connection** | USB (PC) → Adapter Board → Servo chain |
@@ -18,52 +53,24 @@ A Python-based control system for the **Feetech ST3215 Serial Bus Servo** using 
 ## 🔌 Wiring Guide
 
 ### Servo Wire Colors → Adapter Board
-
 ```
 ⚫ BLACK  →  G  (Ground)
 🔴 RED    →  V  (Voltage / Power)
 ⚪ WHITE  →  D  (Data / Signal)
 ```
 
-### Board Switch Position
-
-Make sure the switch on the Waveshare adapter is set to:
-```
-B  USB-SERVO   ✅
-```
-
 ### Daisy Chain Setup
-
 ```
 PC (USB) → Adapter Board → Servo ID1 → Servo ID2 → Servo ID3 → ...
 ```
 
 ---
 
-## 🎥 Demo
-
-[![Demo Video](media/photos/connected%20and%20controlled%20by%20python.jpg)](media/videos/demo%20vid.mp4)
-
-> Click the image above to watch the demo video.
-
----
-
-## 📸 Photos
-
-### Waveshare Serial Bus Servo Driver Board
-![Waveshare Serial Bus Servo Driver Board](media/photos/Waveshare%20Serial%20Bus%20Servo%20Driver%20Board.jpg)
-
-### Connected and Controlled by Python
-![Connected and controlled by Python](media/photos/connected%20and%20controlled%20by%20python.jpg)
-
-### Daisy Chained Manipulator with ST3215 Servo
-![Daisy chained manipulator with ST3215 Servo](media/photos/Daisy%20chained%20manipulator%20with%20STM3215%20SERVO.jpg)
-
 ## 🛠️ Software Requirements
 
 - Python 3.x
 - pyserial library
-- Waveshare STServo Python SDK
+- Waveshare STServo Python SDK (bundled — no download needed)
 
 ### Installation
 
@@ -72,32 +79,25 @@ PC (USB) → Adapter Board → Servo ID1 → Servo ID2 → Servo ID3 → ...
 pip install pyserial
 ```
 
-**2. Download the STServo Python SDK from Waveshare:**
-```
-https://www.waveshare.com/wiki/Bus_Servo_Adapter_(A)
-```
-
-**3. Extract and set up the virtual environment:**
+**2. Clone the repository:**
 ```bash
-cd STServo_Python
-stservo-env\Scripts\activate      # Windows
-source stservo-env/bin/activate   # Linux/Mac
+git clone https://github.com/GauthamCodes/LeRobot-ST3215-Controller.git
+cd LeRobot-ST3215-Controller
 ```
 
-**4. Copy all scripts from this repo into the `sms_sts` folder:**
+**3. Run any script directly:**
+```bash
+cd scripts
+python ping.py
 ```
-STServo_Python/
-  stservo-env/
-    sms_sts/          ← place all scripts here
-    scservo_sdk/      ← SDK library (already there)
-```
+
+That's it — the `scservo_sdk` library is already bundled inside the repo. No extra downloads or setup needed!
 
 ---
 
 ## 📁 Project Structure
-
 ```
-ST3215_servo_controller/
+LeRobot-ST3215-Controller/
 │
 ├── README.md                    ← You are here
 ├── requirements.txt             ← Python dependencies
@@ -276,7 +276,6 @@ Main Thread               → Handles keyboard commands
 ## 📐 Position & Angle Reference
 
 The ST3215 uses a **12-bit magnetic encoder**:
-
 ```
 Position range : 0 – 4095
 Angle range    : 0° – 360°
@@ -308,9 +307,6 @@ Examples:
 ---
 
 ## 🔧 Troubleshooting
-
-### `No such file or directory: SCServo.h`
-→ SCServo library not installed correctly. See installation steps above.
 
 ### `Access is denied` on COM port
 → Close Arduino IDE or any other program using the port, then retry.
@@ -346,3 +342,4 @@ MIT License — free to use and modify.
 
 - [Waveshare](https://www.waveshare.com) — Hardware and Python SDK
 - [Feetech](http://www.feetechrc.com) — ST3215 Servo
+- [LeRobot](https://github.com/huggingface/lerobot) — Inspiration for the manipulator design
